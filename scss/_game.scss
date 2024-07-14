@@ -1,0 +1,170 @@
+@use 'variables';
+
+.game{
+
+    &__board {
+        width: 94%;
+        max-width: 30rem;
+        background-color: variables.$color-black;
+        position: relative;
+        z-index: 100;
+        padding: 3rem 1rem;
+        border-radius: 8px;
+        box-shadow: 0px 20px 50px 10px rgba(0,0,0,0.35);
+    }
+
+
+    &__heading {
+        // border: 1px solid white;
+    }
+
+    &__title {
+        font-size: 2rem;
+        // text gadient
+        background: linear-gradient(to right, variables.$color-white, variables.$color-accent 40%, variables.$color-accent-light);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    &__word {
+        background-color: variables.$color-gray-dark;
+        color: variables.$color-gray;
+        padding: 1rem;
+        border-radius: .5rem;
+        width: 100%;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1rem;
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+
+    &__stats,
+    &__text__fields,
+    &__buttons {
+        max-width: 25rem;
+        margin: 0 auto 1.5rem;
+    }
+
+    &__stats {
+        flex-direction: column;
+    }
+
+    &__stats__text {
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: .875rem;
+        color: variables.$color-gray-dark;
+    }
+
+    &__mistakes {
+       color: variables.$color-accent-light;
+    }
+
+    &__tries__circles {
+        display: flex;
+        gap: .3rem;
+    }
+
+    &__tries__circle {
+        height: .5rem;
+        width: .5rem;
+        border-radius: 50%;
+        background-color: variables.$color-gray;
+
+        &.highlight {
+            background-color: variables.$color-accent-light;
+        }
+    }
+
+    &__text__fields {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: .75rem;
+    }
+
+    &__text__field {
+        border: 1.75px solid variables.$color-gray;
+        border-radius: 4px;
+        height: 3.75rem;
+        font-size: 1.5rem;
+        position: relative;
+        color: variables.$color-white;
+
+        &.highlight {
+            border-color: variables.$color-accent-light;
+
+            &::before {
+                content: '';
+                height: 2px;
+                width: 40%;
+                background-color: variables.$color-white;
+                position: absolute;
+                bottom: .75rem;
+                left: 50%;
+                transform: translate(-50%, 50%);
+            }
+        }
+    }
+
+    &__buttons {
+        margin-top: 3rem;
+        display: grid;
+        grid-template-columns: 40% 40%;
+        place-content: center;
+        gap: 1rem;
+
+        button {
+            border: 0;
+            cursor: pointer;
+            padding: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all .2s linear;
+        }
+
+        button:first-child {
+            background-color: variables.$color-accent;
+            color: variables.$color-white;
+            box-shadow: 0px .3rem rgba(201, 81, 231, .7);
+
+            &:hover {
+                transform: translateY(.1rem);
+                box-shadow: 0px .125rem rgba(201, 81, 231, .7);
+            }
+        }
+
+        button:last-child {
+            background-color: transparent;
+            color: variables.$color-white;
+            border: 1.5px solid;
+
+            &:hover {
+                background-color: variables.$color-white;
+                color: variables.$color-accent-dark;
+            }
+        }
+    }
+
+
+} 
+
+@media screen and (min-width: 32rem) {
+    .game {
+        &__board {
+            padding: 5rem 2.5rem;
+        }
+
+        &__stats {
+            flex-direction: row;
+        }
+
+        &__stats,
+        &__text__fields,
+        &__buttons {
+            width: 90%;
+            max-width: 25rem;
+        }
+    }
+}

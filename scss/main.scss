@@ -1,6 +1,7 @@
 @use 'reset';
 @use 'utils';
 @use 'variables';
+@use 'game';
 
 
 body {
@@ -11,6 +12,8 @@ body {
     background-size: cover;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
+    // place-content: center;
+
     place-items: center;
     padding: 2rem 0;
 }
@@ -28,99 +31,7 @@ body {
     display: none;
 }
 
-.game{
 
-    &__board {
-        width: 94%;
-        max-width: 32rem;
-        background-color: variables.$color-black;
-        position: relative;
-        z-index: 100;
-        padding: 2rem 1rem;
-        border-radius: 8px;
-        box-shadow: 0px 20px 50px 10px rgba(0,0,0,0.35);
-    }
-
-
-    &__heading {
-        border: 1px solid white;
-    }
-
-    &__title {
-        font-size: 2rem;
-        // text gadient
-        background: linear-gradient(to right, variables.$color-white, variables.$color-accent 40%, variables.$color-accent-light);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    &__word {
-        background-color: variables.$color-gray-dark;
-        color: variables.$color-gray;
-        padding: 1rem;
-        border-radius: .5rem;
-        width: 100%;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 1rem;
-        font-weight: 600;
-        font-size: 1.5rem;
-    }
-
-    &__stats,
-    &__input__form,
-    &__buttons {
-        width: 90%;
-        max-width: 25rem;
-        margin: 0 auto 1.5rem;
-    }
-
-    &__stats {
-        
-    }
-
-    &__stats__text {
-        font-weight: 600;
-        letter-spacing: 1px;
-        font-size: .875rem;
-        color: variables.$color-gray-dark;
-    }
-
-    &__mistakes {
-       color: variables.$color-accent-light;
-    }
-
-    &__tries__circles {
-        display: flex;
-        gap: .3rem;
-    }
-
-    &__tries__circle {
-        height: .5rem;
-        width: .5rem;
-        border-radius: 50%;
-        background-color: variables.$color-gray;
-
-        &.highlight {
-            background-color: variables.$color-accent-light;
-        }
-    }
-
-    &__input__form {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-    }
-
-} 
-
-@media screen and (min-width: 32rem) {
-    .game {
-
-        &__board {
-            padding: 3rem 2rem;
-        }
-    }
-}
 
 @keyframes wiggle {
     0% {
