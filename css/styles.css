@@ -1,17 +1,206 @@
-/* Error: There is no module with the namespace "mixins".
- *    ,
- * 30 |     @include mixins.box;
- *    |     ^^^^^^^^^^^^^^^^^^^
- *    '
- *   scss/main.scss 30:5  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: 'Error: There is no module with the namespace "mixins".\a    \2577 \a 30 \2502      @include mixins.box;\a    \2502      ^^^^^^^^^^^^^^^^^^^\a    \2575 \a   scss/main.scss 30:5  root stylesheet';
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body, h1, h2, h3, h4, p,
+figure, blockquote, dl, dd {
+  margin-block-end: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role=list],
+ol[role=list] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1, h2, h3, h4,
+button, input, label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1, h2,
+h3, h4 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input, button,
+textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+.flex--space-between, .flex--center, .flex-item {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.flex--center {
+  justify-content: center;
+  flex-direction: column;
+}
+
+.flex--space-between {
+  justify-content: space-between;
+}
+
+.m-b {
+  margin-bottom: 1.5rem;
+}
+
+body {
+  background-image: linear-gradient(to bottom right, #672171 20%, #7429c6 60%, #c951e7);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: grid;
+  place-items: center;
+  padding: 2rem 0;
+}
+
+.main-title {
+  position: absolute;
+  text-transform: uppercase;
+  font-size: 5rem;
+  transform: rotate(30deg);
+  transform-origin: center;
+  letter-spacing: 14px;
+  color: #f2f5f9;
+  opacity: 0.3;
+  animation: wiggle 3s ease 0.2s 4;
+  display: none;
+}
+
+.game__board {
+  width: 94%;
+  max-width: 32rem;
+  background-color: #030616;
+  position: relative;
+  z-index: 100;
+  padding: 2rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0px 20px 50px 10px rgba(0, 0, 0, 0.35);
+}
+.game__heading {
+  border: 1px solid white;
+}
+.game__title {
+  font-size: 2rem;
+  background: linear-gradient(to right, #f2f5f9, #7429c6 40%, #c951e7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.game__word {
+  background-color: #4a5567;
+  color: #97a3b6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+.game__stats, .game__input__form, .game__buttons {
+  width: 90%;
+  max-width: 25rem;
+  margin: 0 auto 1.5rem;
+}
+.game__stats__text {
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 0.875rem;
+  color: #4a5567;
+}
+.game__mistakes {
+  color: #c951e7;
+}
+.game__tries__circles {
+  display: flex;
+  gap: 0.3rem;
+}
+.game__tries__circle {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 50%;
+  background-color: #97a3b6;
+}
+.game__tries__circle.highlight {
+  background-color: #c951e7;
+}
+.game__input__form {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+@media screen and (min-width: 32rem) {
+  .game__board {
+    padding: 3rem 2rem;
+  }
+}
+@keyframes wiggle {
+  0% {
+    transform: rotate(30deg);
+  }
+  25% {
+    transform: rotate(35deg);
+  }
+  50% {
+    transform: rotate(25deg);
+  }
+  75% {
+    transform: rotate(35deg);
+  }
+  100% {
+    transform: rotate(20deg);
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

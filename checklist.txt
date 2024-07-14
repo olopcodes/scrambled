@@ -2,7 +2,7 @@
 THINGS TO DO
 =========================================================
 
-[] Use HTML to create the basic structure.
+[x] Use HTML to create the basic structure.
 
 [] Create a guess the word game that matches the given design.
 

@@ -1,0 +1,24 @@
+%flex {
+  align-items: center;
+    display: flex;
+    gap: 1rem
+  }
+
+  .flex-item {
+    @extend %flex;
+  }
+
+  .flex--center {
+    @extend %flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .flex--space-between {
+    @extend %flex;
+    justify-content: space-between;
+  }
+
+  .m-b {
+    margin-bottom: 1.5rem;
+  }
