@@ -21,7 +21,6 @@ body {
 .main-title {
     position: absolute;
     text-transform: uppercase;
-    font-size: 5rem;
     transform: rotate(30deg);
     transform-origin: center;
     letter-spacing: 14px;
@@ -31,6 +30,25 @@ body {
     display: none;
 }
 
+@media screen and (min-width: 50rem) {
+    .main-title {
+        display: block;
+        font-size: 4rem;
+
+    }
+}
+
+@media screen and (min-width: 70rem) {
+    .main-title {
+        font-size: 6rem;
+    }
+}
+
+@media screen and (min-width: 90rem) {
+    .main-title {
+        letter-spacing: 2rem;
+    }
+}
 
 
 @keyframes wiggle {
