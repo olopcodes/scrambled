@@ -3,10 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Scramble | A Guess the Word Game</title>
+    <title>Scrambled. | A Guess the Word Game</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <h1 class="main-title">guess the word</h1>
+    <div class="game__board">
+        <h2 class="game__title">Scrambled.</h2>
+        <p class="game__word">frewol</p>
+        <div class="game__stats">
+            <div class="game__tries">
+                <p class="game__tries__text game__stats__text">Tries (<span>4</span>5)</p>
+                <div class="game__tries__circles">
+                    <div class="game__tries__circle"></div>
+                    <div class="game__tries__circle"></div>
+                    <div class="game__tries__circle"></div>
+                    <div class="game__tries__circle"></div>
+                    <div class="game__tries__circle"></div>
+                </div>
+            </div>
+            <div class="game__mistakes">
+                <p class="game__stats__text">Mistakes:</p>
+                <div class="game__mistakes__display">
+                    <p>a,b,c,g</p>
+                </div>
+            </div>
+            <div class="game__input__boxes">
+                <input type="text" class="game__input" value="f">
+                <input type="text" class="game__input" value="l">
+                <input type="text" class="game__input" value="o">
+                <input type="text" class="game__input" value="w">
+                <input type="text" class="game__input">
+                <input type="text" class="game__input">
+            </div>
+            <div class="game__buttons">
+                <button class="game__button--random">random</button>
+                <button class="game__button--reset">reset</button>
+            </div>
+        </div>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>

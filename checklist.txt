@@ -20,7 +20,7 @@ THINGS TO DO
 
 [] Users can reset all inputs, mistakes, and tries by selecting the reset button.
 
-[] When the number of tries or mistakes reaches 6, the game should be reset.
+[] When the number of tries or mistakes reaches 5, the game should be reset.
 
 [] When the user completes the game, it should show a '🎉 Success' alert.
 

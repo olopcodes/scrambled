@@ -1,5 +1,17 @@
-body {
-  color: red;
-}
+/* Error: There is no module with the namespace "mixins".
+ *    ,
+ * 30 |     @include mixins.box;
+ *    |     ^^^^^^^^^^^^^^^^^^^
+ *    '
+ *   scss/main.scss 30:5  root stylesheet */
 
-/*# sourceMappingURL=styles.css.map */
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: 'Error: There is no module with the namespace "mixins".\a    \2577 \a 30 \2502      @include mixins.box;\a    \2502      ^^^^^^^^^^^^^^^^^^^\a    \2575 \a   scss/main.scss 30:5  root stylesheet';
+}

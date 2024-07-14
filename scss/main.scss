@@ -1,5 +1,31 @@
+@use 'reset';
+
 $color: red;
 
 body {
     color: $color;
+}
+
+// how to use extend
+%message {
+    padding: 0.3em 0.5em;
+    border-radius: 0.5em;
+  }
+   
+  .message-info {
+    @extend %message;
+    color: blue;
+    background-color: lightblue;
+  }
+   
+  .message-danger {
+    @extend %message;
+    color: red;
+    background-color: pink;
+  }
+
+
+//   how to use 
+.title {
+    @include mixins.box;
 }
