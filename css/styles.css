@@ -137,6 +137,9 @@ textarea:not([rows]) {
 .game__mistakes {
   color: rgb(201, 81, 231);
 }
+.game__mistakes__display p {
+  opacity: 0.5;
+}
 .game__tries__circles {
   display: flex;
   gap: 0.3rem;
@@ -175,6 +178,12 @@ textarea:not([rows]) {
   bottom: 0.75rem;
   left: 50%;
   transform: translate(-50%, 50%);
+}
+.game__alert {
+  font-size: 0.875rem;
+  color: #97a3b6;
+  grid-column: 1/-1;
+  letter-spacing: 0.5px;
 }
 .game__buttons {
   margin-top: 3rem;
@@ -244,6 +253,10 @@ body {
   opacity: 0.3;
   animation: wiggle 3s ease 0.2s 4;
   display: none;
+}
+
+.hide {
+  display: none !important;
 }
 
 @media screen and (min-width: 50rem) {
