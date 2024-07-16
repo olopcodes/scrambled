@@ -134,6 +134,9 @@ textarea:not([rows]) {
   font-size: 0.875rem;
   color: #4a5567;
 }
+.game__tries, .game__mistakes {
+  align-self: flex-start;
+}
 .game__mistakes {
   color: rgb(201, 81, 231);
 }
@@ -142,6 +145,7 @@ textarea:not([rows]) {
 }
 .game__tries__circles {
   display: flex;
+  align-items: center;
   gap: 0.3rem;
 }
 .game__tries__circle {
@@ -155,8 +159,13 @@ textarea:not([rows]) {
 }
 .game__text__fields {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
   gap: 0.75rem;
+}
+.game__text__fields.six {
+  grid-template-columns: repeat(6, 1fr);
+}
+.game__text__fields.five {
+  grid-template-columns: repeat(5, 1fr);
 }
 .game__text__field {
   border: 1.75px solid #97a3b6;

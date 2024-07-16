@@ -52,6 +52,11 @@
         color: variables.$color-gray-dark;
     }
 
+    &__tries,
+    &__mistakes {
+        align-self: flex-start;
+    }
+
     &__mistakes {
        color: variables.$color-accent-light;
 
@@ -65,6 +70,7 @@
 
     &__tries__circles {
         display: flex;
+        align-items: center;
         gap: .3rem;
     }
 
@@ -81,8 +87,15 @@
 
     &__text__fields {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
         gap: .75rem;
+
+        &.six {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        &.five {
+            grid-template-columns: repeat(5, 1fr);
+        }
     }
 
     &__text__field {
