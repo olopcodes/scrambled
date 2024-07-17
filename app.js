@@ -1,6 +1,10 @@
 let word;
 let jumbleWord;
 let numberOfTries;
+let textIndex = 0;
+let userInput = "";
+let mistakes = 0;
+
 const words = [
   "flower",
   "hijack",
@@ -42,13 +46,13 @@ const words = [
   "balmy",
   "bokeh",
 ];
-
 const buttons = document.querySelectorAll(".game__buttons button");
 const gameWordDisplay = document.querySelector(".game__word");
 const gameTriesSpanText = document.querySelector(".game__stats__text span");
 const gameTriesCircles = document.querySelector(".game__tries__circles");
 const gameMistakesText = document.querySelector(".game__mistakes__display p");
 const gameFieldsTextEl = document.querySelector(".game__text__fields");
+const gameAlert = document.querySelector(".game__alert");
 
 // get random word
 function getRandomWord() {
@@ -106,8 +110,10 @@ function displayBasedOnWord(randWord) {
   for (let i = 0; i < randWord.length; i++) {
     const div = document.createElement("div");
     div.classList.add("game__text__field", "flex--center", "highlight");
-    gameFieldsTextEl.append(div);
+    gameFieldsTextEl.insertBefore(div, gameAlert);
   }
+
+  toggleGameAlert();
 }
 
 function updateNumberOfColumnsForText(randWord) {
@@ -125,6 +131,55 @@ function updateNumberOfColumnsForText(randWord) {
     gameFieldsTextEl.classList.remove("six");
   }
 }
+
+function toggleGameAlert() {
+  gameAlert.classList.toggle("hide");
+}
+
+function displayUserInput(key) {
+  const textFields = document.querySelectorAll(".game__text__field");
+  if (textIndex < textFields.length) {
+    textFields[textIndex].textContent = key;
+    userInput += key;
+    textIndex += 1;
+  }
+
+  console.log(userInput);
+}
+
+// validate user typed a string
+function checkIfUserTypedLetter(key) {
+  const onlyLetters = /^[A-Za-z]+$/;
+  if (key.match(onlyLetters)) {
+    return key;
+  } else {
+    return false;
+  }
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Delete" || e.key === "Backspace") {
+    // delete letter from word
+    userInput = userInput.split("");
+    userInput.pop();
+    userInput = userInput.join("");
+
+    // show new word in the dom
+  }
+
+  if (word.length === userInput.length) return;
+
+  if (e.key === "Enter" && word.length !== userInput.length) {
+    alert("Your guess must match the length of scrambled word.");
+    return;
+  } else if (e.key === "Enter" && word.length === userInput.length) {
+    console.log("comparing");
+  }
+
+  const isLetter = checkIfUserTypedLetter(e.key);
+
+  if (isLetter) displayUserInput(isLetter);
+});
 
 (function () {
   word = getRandomWord();
