@@ -1,16 +1,38 @@
-let word;
-let jumbleWord;
-let numberOfTries;
-let textIndex = 0;
-let userInput = "";
-let mistakes = 0;
-
-const data = {
-  word: "",
+const game = {
+  randomWord: "",
   jumbleWord: "",
-  numberOfTries: "",
+  numberOfTries: 0,
   userInput: "",
   tryCount: 0,
+
+  getRandomWord() {
+    this.randomWord = words[Math.floor(Math.random() * words.length)];
+  },
+
+  getJumbleWord(randWord) {
+    // reverse the string and convert to array
+    const wordArr = randWord.split("");
+
+    // slice the array it two and reverse again
+    // making the slice of the words be more random
+    let slice1;
+    let slice2;
+
+    if (Math.random() > 0.5) {
+      slice1 = wordArr.slice(0, 2).reverse();
+      slice2 = wordArr.slice(2).reverse();
+    } else {
+      slice1 = wordArr.slice(0, 3).reverse();
+      slice2 = wordArr.slice(3).reverse();
+    }
+
+    // join the arrays together and turn to string
+    this.jumbleWord = slice1.concat(slice2).join("");
+  },
+
+  getNumberOfTries() {
+    this.numberOfTries = this.randomWord.length - 1;
+  },
 };
 
 const words = [
@@ -55,10 +77,15 @@ const words = [
   "balmy",
   "bokeh",
 ];
-const buttons = document.querySelectorAll(".game__buttons button");
-const gameWordDisplay = document.querySelector(".game__word");
-const gameTriesSpanText = document.querySelector(".game__stats__text span");
-const gameTriesCircles = document.querySelector(".game__tries__circles");
-const gameMistakesText = document.querySelector(".game__mistakes__display p");
-const gameFieldsTextEl = document.querySelector(".game__text__fields");
-const gameAlert = document.querySelector(".game__alert");
+
+// functions
+function getRandomWord() {
+  return words[Math.floor(Math.random() * words.length)];
+}
+
+(function () {
+  game.getRandomWord();
+  game.getJumbleWord(game.randomWord);
+  game.getNumberOfTries();
+  console.log(game);
+})();
