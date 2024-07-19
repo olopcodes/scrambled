@@ -2,7 +2,7 @@ const game = {
   randomWord: "",
   jumbleWord: "",
   numberOfTries: 0,
-  userInput: "",
+  userInput: [],
   tryCount: 0,
 
   getRandomWord() {

@@ -34,6 +34,16 @@ function displayNumberOfSquares(gameObj) {
   toggleGameAlert();
 }
 
+function displayUserInput(gameObj) {
+  const inputFields = clearInputFields();
+
+  gameObj.userInput.forEach((letter, index) => {
+    inputFields[index].textContent = letter;
+  });
+
+  console.log(gameObj.userInput, "displayuserinput");
+}
+
 function updateNumberOfTries(gameObj) {
   gameObj.tryCount += 1;
   const circles = document.querySelectorAll(".game__tries__circle");
@@ -65,8 +75,6 @@ function updateNumberOfColumnsForTextField(gameObj) {
 
 // validate user typed a string
 function checkTypedLetter(key) {
-  if (key === "Delete" || key === "Backspace") return;
-
   const onlyLetters = /^[A-Za-z]+$/;
   if (key.match(onlyLetters)) {
     return key;
@@ -75,12 +83,13 @@ function checkTypedLetter(key) {
   }
 }
 
-function handleEnterTyped(key, gameObj) {
-  if (key === "Enter" && gameObj.length !== gameObj.userInput.length) {
+function handleEnterTyped(gameObj) {
+  if (gameObj.randomWord.length !== gameObj.userInput.length) {
     alert("Your guess must match the length of scrambled word.");
     return;
-  } else if (key === "Enter" && gameObj.length === userInput.length) {
-    console.log("comparing");
+  } else if (gameObj.randomWord.length === gameObj.userInput.length) {
+    compareWords(gameObj);
+    return;
   }
 }
 
@@ -88,10 +97,49 @@ function handleTypedToomuch(gameObj) {
   if (gameObj.randomWord.length === gameObj.userInput.length) return;
 }
 
+function deleteLetter(gameObj) {
+  gameObj.userInput.pop();
+}
+
+function addLetterToUserInput(gameObj, letter) {
+  if (gameObj.userInput.length !== gameObj.randomWord.length) {
+    gameObj.userInput.push(letter);
+  }
+}
+
+function clearInputFields() {
+  const inputFields = document.querySelectorAll(".game__text__field");
+  inputFields.forEach((sq) => (sq.textContent = ""));
+
+  return inputFields;
+}
+
+function compareWords(gameObj) {
+  if (gameObj.randomWord === gameObj.userInput.join("")) {
+    console.log("you win!");
+  } else {
+    console.log("try again");
+  }
+}
+
 document.addEventListener("keydown", (e) => {
-  handleEnterTyped(e.key, game);
+  if (e.key === "Enter") {
+    handleEnterTyped(game);
+    return;
+  }
+
+  if (e.key === "Delete" || e.key === "Backspace") {
+    deleteLetter(game);
+    displayUserInput(game);
+    return;
+  }
 
   handleTypedToomuch(game);
+
+  if (checkTypedLetter(e.key)) {
+    addLetterToUserInput(game, e.key);
+    displayUserInput(game);
+  }
 });
 
 (function () {
