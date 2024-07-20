@@ -5,7 +5,7 @@ const game = {
   userInput: [],
   tryCount: 0,
   userMistakes: [],
-  userCorrect: [],
+  userCorrectIndexes: [],
   definitions: [],
 
   getRandomWord() {
@@ -33,8 +33,44 @@ const game = {
     this.jumbleWord = slice1.concat(slice2).join("");
   },
 
+  addValidInput(input) {
+    this.userInput.push(input);
+  },
+
   getNumberOfTries() {
     this.numberOfTries = this.randomWord.length - 1;
+  },
+
+  gameResult() {
+    this.compareWords();
+
+    if (this.randomWord === this.userInput.join("")) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  compareWords() {
+    const wordArr = this.randomWord.split("");
+    this.userCorrectIndexes = [];
+    this.userMistakes = [];
+
+    this.userInput.forEach((input, index) => {
+      if (input === wordArr[index]) {
+        this.userCorrectIndexes.push(index);
+      } else {
+        this.userMistakes.push(input);
+      }
+    });
+  },
+
+  increaseTryCount() {
+    this.tryCount += 1;
+  },
+
+  deleteUserInput() {
+    this.userInput.pop();
   },
 
   async getDefinition() {
