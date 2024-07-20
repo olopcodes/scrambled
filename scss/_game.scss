@@ -133,27 +133,27 @@
         }
 
         &.winner:first-child {
-            animation: winner 1.5s ease-in-out 0s infinite;
+            animation: winner 2s ease-in-out 0s infinite forwards;
         }
 
         &.winner:nth-of-type(2) {
-            animation: winner 1.5s ease-in-out 0.2s infinite;
+            animation: winner 2s ease-in-out 0.2s infinite forwards;
         }
 
         &.winner:nth-of-type(3) {
-            animation: winner 1.5s ease-in-out 0.4s infinite;
+            animation: winner 2s ease-in-out 0.4s infinite forwards;
         }
 
         &.winner:nth-of-type(4) {
-            animation: winner 1.5s ease-in-out 0.6s infinite;
+            animation: winner 2s ease-in-out 0.6s infinite forwards;
         }
 
         &.winner:nth-of-type(5) {
-            animation: winner 1.5s ease-in-out 0.8s infinite;
+            animation: winner 2s ease-in-out 0.8s infinite forwards;
         }
 
         &.winner:nth-of-type(6) {
-            animation: winner 1.5s ease-in-out 1s infinite;
+            animation: winner 2s ease-in-out 1s infinite forwards;
         }
     }
 

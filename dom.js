@@ -1,10 +1,14 @@
-const buttons = document.querySelectorAll(".game__buttons button");
+const buttons = document.querySelectorAll("button");
 const gameWordDisplay = document.querySelector(".game__word");
 const gameTriesSpanText = document.querySelector(".game__stats__text span");
 const gameTriesCircles = document.querySelector(".game__tries__circles");
 const gameMistakesText = document.querySelector(".game__mistakes__display p");
 const gameFieldsTextEl = document.querySelector(".game__text__fields");
 const gameAlert = document.querySelector(".game__alert");
+const modal = document.querySelector(".modal");
+const modalBox = document.querySelector(".modal__box");
+const modalDefinitionsList = document.querySelector(".modal__definitions");
+const modalInfoContent = document.querySelector(".modal__info-content");
 
 function displayRandomWord(gameObj) {
   gameWordDisplay.textContent = game.jumbleWord;
@@ -19,6 +23,15 @@ function displayTryCircles(gameObj) {
     const div = document.createElement("div");
     div.classList.add("game__tries__circle");
     gameTriesCircles.append(div);
+  }
+}
+
+function toggleHiglightClass(gameObj) {
+  const circles = document.querySelectorAll(".game__tries__circle");
+
+  for (let i = 0; i < gameObj.tryCount; i++) {
+    circles[i].classList.toggle("highlight");
+    console.log("try", i);
   }
 }
 
@@ -117,6 +130,7 @@ function compareWords(gameObj) {
     console.log("you win!");
     handleCorrect(gameObj);
     displayCorrect(gameObj.userCorrect);
+    displayAlertMessage(gameObj, 1);
     toggleWinnerClass();
   } else {
     gameObj.tryCount += 1;
@@ -124,6 +138,10 @@ function compareWords(gameObj) {
     gameObj.userMistakes = gameObj.userInput.filter((letter, index) => {
       return letter !== randomWordArr[index];
     });
+
+    displayTries(gameObj);
+
+    toggleHiglightClass(gameObj);
 
     handleCorrect(gameObj);
 
@@ -142,14 +160,25 @@ function displayMistakes(gameObj) {
 }
 
 function handleCorrect(obj) {
+  obj.userCorrect = [];
   obj.userInput.forEach((letter, index) => {
     if (letter === obj.randomWord.split("")[index]) obj.userCorrect.push(index);
   });
+
+  console.log(obj, "handle correct");
 }
 
 function displayCorrect(correctArr) {
   const inputFields = document.querySelectorAll(".game__text__field");
   correctArr.forEach((item) => inputFields[item].classList.add("correct"));
+
+  setTimeout(
+    () =>
+      correctArr.forEach((item) =>
+        inputFields[item].classList.remove("correct")
+      ),
+    1500
+  );
 }
 
 function toggleWinnerClass() {
@@ -157,7 +186,42 @@ function toggleWinnerClass() {
   inputFields.forEach((i) => i.classList.add("winner"));
 }
 
+function toggleShowModal() {
+  modal.classList.toggle("show");
+  modalBox.classList.toggle("show");
+}
+
+function displayAlertMessage(gameObj, num) {
+  setTimeout(() => toggleShowModal(), 1000);
+
+  html = `
+     <p class="modal__main-message">You win!!</p>
+    <p class="modal__text">You Guessed: <span class="modal--text-highlight modal__random-word">${
+      gameObj.randomWord
+    }</span> ${num === 1 ? "correct." : "wrong"}.</p>
+  `;
+
+  modalInfoContent.innerHTML = html;
+
+  addDefinitions(gameObj);
+}
+
+function addDefinitions(gameObj) {
+  gameObj.definitions.forEach((def) => {
+    const li = document.createElement("li");
+    li.textContent = def;
+    li.classList.add("modal__definition");
+    modalDefinitionsList.append(li);
+  });
+}
+
+function updateGameTries(gameObj) {}
+
 document.addEventListener("keydown", (e) => {
+  if (game.tryCount === game.numberOfTries) {
+    console.log("gameover");
+  }
+
   if (e.key === "Enter") {
     handleEnterTyped(game);
     return;

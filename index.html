@@ -5,18 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrambled. | A Guess the Word Game</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
 </head>
-<body>
-    <!-- <div class="modal">
+<body class="game-over">
+    <div class="modal">
         <div class="modal__box">
             <button class="btn-close">close</button>
             <div class="modal__info">
-                <p class="modal__main-message">You win!!</p>
-                <p class="modal__text">You Guessed: random word correctly</p>
-                <p class="modal__definition"></p>
+                <div class="modal__info-content">
+                   
+                </div>
+                <button class="btn-definition">get definitions</button>
+                
+                <ol class="modal__definitions hide">
+                    <!-- <li class="modal__definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, rerum.</li>
+                    <li class="modal__definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, rerum.</li> -->
+                </ol>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <h1 class="main-title">guess the word</h1>
     <div class="game__board">

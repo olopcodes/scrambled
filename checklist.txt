@@ -4,11 +4,11 @@ THINGS TO DO
 
 [x] Use HTML to create the basic structure.
 
-[] Create a guess the word game that matches the given design.
+[x] Create a guess the word game that matches the given design.
 
-[] The page should be responsive on different screen sizes.
+[x] The page should be responsive on different screen sizes.
 
-[] Use Vanilla JavaScript to add interactivity.
+[x] Use Vanilla JavaScript to add interactivity.
 
 [] Users can see a random scrambled word when the page is first loaded or after users click the random button.
 

@@ -2,6 +2,7 @@
 @use 'utils';
 @use 'variables';
 @use 'game';
+@use 'modal';
 
 
 body {
@@ -16,6 +17,7 @@ body {
 
     place-items: center;
     padding: 2rem 0;
+
 }
 
 .main-title {
@@ -32,6 +34,10 @@ body {
 
 .hide {
     display: none !important;
+}
+
+.show {
+    transform: scale(1);
 }
 
 @media screen and (min-width: 50rem) {
