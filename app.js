@@ -48,6 +48,14 @@ const game = {
       this.definitions.push(data[0].meanings[0].definitions[1].definition);
     }
   },
+
+  runGame() {
+    game.getRandomWord();
+    game.getJumbleWord(game.randomWord);
+    game.getDefinition();
+    game.getNumberOfTries();
+    console.log(game);
+  },
 };
 
 const words = [
@@ -166,9 +174,5 @@ const words = [
 ];
 
 (function () {
-  game.getRandomWord();
-  game.getJumbleWord(game.randomWord);
-  game.getDefinition();
-  game.getNumberOfTries();
-  console.log(game);
+  game.runGame();
 })();

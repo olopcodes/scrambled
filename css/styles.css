@@ -159,14 +159,14 @@ textarea:not([rows]) {
 .game__tries__circle.highlight {
   background-color: rgb(201, 81, 231);
 }
-.game__text__fields {
+.game__text__fields div {
   display: grid;
   gap: 0.75rem;
 }
-.game__text__fields.six {
+.game__text__fields div.six {
   grid-template-columns: repeat(6, 1fr);
 }
-.game__text__fields.five {
+.game__text__fields div.five {
   grid-template-columns: repeat(5, 1fr);
 }
 .game__text__field {
@@ -326,6 +326,7 @@ textarea:not([rows]) {
 .modal__text {
   text-align: left;
   margin-bottom: 0.5rem;
+  font-size: 1.2rem;
 }
 .modal__text span {
   font-style: italic;
@@ -344,9 +345,12 @@ textarea:not([rows]) {
   right: 1rem;
 }
 .modal .btn-definition {
+  border: none;
+  border-radius: 5px;
   padding: 0.5rem 1.25rem;
   text-transform: capitalize;
   margin-bottom: 1.5rem;
+  background-color: rgb(201, 81, 231);
 }
 
 body {

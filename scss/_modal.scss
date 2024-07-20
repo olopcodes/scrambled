@@ -44,6 +44,7 @@
         color: rgb(201, 81, 231);
         font-weight: bold;
         border-bottom: 1.25px solid snow;
+
     }
 
     
@@ -51,6 +52,7 @@
     &__text {
         text-align: left;
         margin-bottom: .5rem;
+        font-size: 1.2rem;
     }
 
     &__text span {
@@ -74,9 +76,12 @@
     }
 
     .btn-definition {
+        border: none;
+        border-radius: 5px;
         padding: .5rem 1.25rem;
         text-transform: capitalize;
         margin-bottom: 1.5rem;
+        background-color: rgb(201, 81, 231);
     }
 }
 
