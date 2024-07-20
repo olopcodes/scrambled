@@ -4,6 +4,10 @@ const game = {
   numberOfTries: 0,
   userInput: [],
   tryCount: 0,
+  userMistakes: [],
+  userCorrect: [],
+  definition: "",
+  definition2: "",
 
   getRandomWord() {
     this.randomWord = words[Math.floor(Math.random() * words.length)];
@@ -33,59 +37,54 @@ const game = {
   getNumberOfTries() {
     this.numberOfTries = this.randomWord.length - 1;
   },
+
+  async getDefinition() {
+    const res = await fetch(
+      `https://api.dictionaryapi.dev/api/v2/entries/en/${this.randomWord}`
+    );
+    const data = await res.json();
+    console.log(data);
+    console.log(data[0].meanings[0].definitions[0].definition);
+    if (data[0].meanings[0].length > 1) {
+      console.log(data[0].meanings[0].definitions[1].definition);
+    }
+  },
 };
 
 const words = [
-  "break",
-  "flower",
-  "hijack",
-  "squawk",
-  "quirky",
-  "frenzy",
-  "object",
-  "bistro",
-  "circle",
-  "eskimo",
-  "hyrax",
-  "numbat",
-  "reign",
-  "region",
-  "edible",
-  "chazan",
-  "schnoz",
-  "defuse",
-  "claque",
-  "judice",
-  "knubby",
-  "quince",
-  "subfix",
-  "whacky",
-  "zenith",
-  "cajole",
-  "enzym",
-  "bijou",
-  "squab",
-  "vizor",
-  "quips",
-  "maize",
-  "pygmy",
-  "amuck",
-  "axiom",
-  "hokum",
-  "smock",
-  "skimp",
-  "balmy",
-  "bokeh",
+  // "region",
+  // "amaze",
+  // "tails",
+  // "python",
+  // "spring",
+  // "strong",
+  // "privy",
+  // "basket",
+  // "toilet",
+  // "flavor",
+  // "junior",
+  // "savior",
+  // "suave",
+  // "prison",
+  // "jaded",
+  // "cobra",
+  // "lawyer",
+  // "jumble",
+  // "phone",
+  // "abacas",
+  // "cabana",
+  // "dacoit",
+  // "gantry",
+  // "gander",
+  // "gamify",
+  "haceks",
+  // "gimlet",
 ];
-
-// functions
-function getRandomWord() {
-  return words[Math.floor(Math.random() * words.length)];
-}
 
 (function () {
   game.getRandomWord();
   game.getJumbleWord(game.randomWord);
+  game.getDefinition();
   game.getNumberOfTries();
   console.log(game);
 })();

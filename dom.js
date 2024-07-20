@@ -40,8 +40,6 @@ function displayUserInput(gameObj) {
   gameObj.userInput.forEach((letter, index) => {
     inputFields[index].textContent = letter;
   });
-
-  console.log(gameObj.userInput, "displayuserinput");
 }
 
 function updateNumberOfTries(gameObj) {
@@ -117,9 +115,46 @@ function clearInputFields() {
 function compareWords(gameObj) {
   if (gameObj.randomWord === gameObj.userInput.join("")) {
     console.log("you win!");
+    handleCorrect(gameObj);
+    displayCorrect(gameObj.userCorrect);
+    toggleWinnerClass();
   } else {
-    console.log("try again");
+    gameObj.tryCount += 1;
+    let randomWordArr = gameObj.randomWord.split("");
+    gameObj.userMistakes = gameObj.userInput.filter((letter, index) => {
+      return letter !== randomWordArr[index];
+    });
+
+    handleCorrect(gameObj);
+
+    displayMistakes(gameObj);
+
+    displayCorrect(gameObj.userCorrect);
   }
+}
+
+function displayMistakes(gameObj) {
+  let str = "";
+  gameObj.userMistakes.forEach((letter, index) => {
+    str += `${letter}${index === gameObj.userMistakes.length ? ". " : ", "}`;
+  });
+  gameMistakesText.textContent = str;
+}
+
+function handleCorrect(obj) {
+  obj.userInput.forEach((letter, index) => {
+    if (letter === obj.randomWord.split("")[index]) obj.userCorrect.push(index);
+  });
+}
+
+function displayCorrect(correctArr) {
+  const inputFields = document.querySelectorAll(".game__text__field");
+  correctArr.forEach((item) => inputFields[item].classList.add("correct"));
+}
+
+function toggleWinnerClass() {
+  const inputFields = document.querySelectorAll(".game__text__field");
+  inputFields.forEach((i) => i.classList.add("winner"));
 }
 
 document.addEventListener("keydown", (e) => {
@@ -136,9 +171,11 @@ document.addEventListener("keydown", (e) => {
 
   handleTypedToomuch(game);
 
-  if (checkTypedLetter(e.key)) {
-    addLetterToUserInput(game, e.key);
-    displayUserInput(game);
+  if (game.tryCount < game.numberOfTries) {
+    if (checkTypedLetter(e.key)) {
+      addLetterToUserInput(game, e.key);
+      displayUserInput(game);
+    }
   }
 });
 
