@@ -20,6 +20,8 @@ function displayTriesLeft() {
 }
 
 function displayCircleOfTries() {
+  gameTriesCircles.innerHTML = "";
+
   for (let i = 0; i < game.numberOfTries; i++) {
     const div = document.createElement("div");
     div.classList.add("game__tries__circle");
@@ -41,8 +43,10 @@ function displayInputBoxes() {
 
 function structureColumnForInputBoxes() {
   if (game.randomWord.length === 5) {
+    gameInputFieldsEl.classList.remove("six");
     gameInputFieldsEl.classList.add("five");
   } else {
+    gameInputFieldsEl.classList.remove("five");
     gameInputFieldsEl.classList.add("six");
   }
 }
@@ -68,9 +72,26 @@ function displayUserMistakes() {
   gameMistakesText.textContent = str;
 }
 
+function clearDisplay() {
+  gameTriesCircles.innerHTML = "";
+  gameInputFieldsEl.innerHTML = "";
+  gameTriesSpanText.textContent = "";
+  displayTriesLeft();
+}
+
+function gameReset() {
+  game.userInput = [];
+  game.tryCount = 0;
+  clearInputFields();
+  gameMistakesText.textContent = "";
+  displayTriesLeft();
+  displayCircleOfTries();
+}
+
 function gameDisplay() {
   displayRandomWord();
   displayTriesLeft();
+  removeHighlightClass();
   displayCircleOfTries();
   displayInputBoxes();
 }
@@ -104,6 +125,12 @@ function toggleHighlightOnCircles(action) {
       circles[i].classList.remove("highlight");
     }
   }
+}
+
+function removeHighlightClass() {
+  const circles = document.querySelectorAll(".game__tries__circle");
+  // circles.forEach((c) => c.classList.remove("highlight"));
+  console.log(circles);
 }
 
 function toggleClassOnUserWin(className) {
@@ -144,7 +171,8 @@ document.addEventListener("keydown", (e) => {
         game.increaseTryCount();
         toggleHighlightOnCircles("add");
         displayTriesLeft();
-        toggleCorrectClass();
+        // toggleCorrectClass();
+        toggleClassOnUserWin("correct");
         displayUserMistakes();
       }
     }
@@ -175,5 +203,26 @@ document.addEventListener("keydown", (e) => {
     console.log("game over");
   }
 });
+
+buttons.forEach((b) =>
+  b.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btn-random")) {
+      console.log("random");
+      clearDisplay();
+      game.runGame();
+      gameDisplay();
+      structureColumnForInputBoxes();
+
+      // console.log(game);
+    } else if (e.target.classList.contains("btn-reset")) {
+      console.log("rest");
+      gameReset();
+    } else if (e.target.classList.contains("btn-definition")) {
+      console.log("def");
+    } else if (e.target.classList("btn-close")) {
+      console.log("close");
+    }
+  })
+);
 
 gameDisplay();
