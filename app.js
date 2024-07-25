@@ -38,7 +38,7 @@ const game = {
   },
 
   getNumberOfTries() {
-    this.numberOfTries = this.randomWord.length - 1;
+    this.numberOfTries = this.randomWord.length - 2;
   },
 
   gameResult() {

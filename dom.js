@@ -96,6 +96,27 @@ function gameDisplay() {
   displayInputBoxes();
 }
 
+function handleGameResult() {
+  result = game.tryCount === game.numberOfTries ? "lost" : "won";
+  html = `
+       <p class="modal__main-message">You ${result}!!</p>
+      <p class="modal__text">You Guessed: <span class="modal--text-highlight modal__random-word">${
+        game.randomWord
+      }</span> ${result === "lost" ? "wrong" : "correct"}!</p>
+    `;
+
+  modalInfoContent.innerHTML = html;
+}
+
+function addDefinitions() {
+  game.definitions.forEach((def) => {
+    const li = document.createElement("li");
+    li.textContent = def;
+    li.classList.add("modal__definition");
+    modalDefinitionsList.append(li);
+  });
+}
+
 // keyboard functions ================================
 function checkTypedLetter(key) {
   const onlyLetters = /^[A-Za-z]+$/;
@@ -113,6 +134,10 @@ function removeClassHide(el) {
 
 function addClassHide(el) {
   el.classList.add("hide");
+}
+
+function toggleHide(el) {
+  el.classList.toggle("hide");
 }
 
 function toggleHighlightOnCircles(action) {
@@ -142,9 +167,9 @@ function toggleClassOnUserWin(className) {
   });
 }
 
-function showModal() {
-  modal.classList.add("show");
-  modalBox.classList.add("show");
+function toggleModal() {
+  modal.classList.toggle("show");
+  modalBox.classList.toggle("show");
 }
 
 // event listeners ==================================
@@ -165,8 +190,12 @@ document.addEventListener("keydown", (e) => {
       if (userWon) {
         toggleClassOnUserWin("correct");
         toggleClassOnUserWin("winner");
+        handleGameResult();
+        addDefinitions();
+        // clearDisplay();
+        clearInputFields();
 
-        setTimeout(() => showModal(), 2500);
+        setTimeout(() => toggleModal(), 2500);
       } else {
         game.increaseTryCount();
         toggleHighlightOnCircles("add");
@@ -201,6 +230,10 @@ document.addEventListener("keydown", (e) => {
     }
   } else {
     console.log("game over");
+    toggleModal();
+    handleGameResult();
+    clearDisplay();
+    clearInputFields();
   }
 });
 
@@ -219,8 +252,11 @@ buttons.forEach((b) =>
       gameReset();
     } else if (e.target.classList.contains("btn-definition")) {
       console.log("def");
-    } else if (e.target.classList("btn-close")) {
+      addDefinitions();
+      toggleHide(modalDefinitionsList);
+    } else if (e.target.classList.contains("btn-close")) {
       console.log("close");
+      toggleModal();
     }
   })
 );
